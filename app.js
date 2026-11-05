@@ -1,4 +1,3 @@
-
 const express = require('express');
 
 const app = express();
@@ -8,20 +7,20 @@ app.use(express.json());
 // Temporary in-memory task storage
 let tasks = [
     { id: 1, title: 'Learn Node.js', completed: false },
-    { id: 2, title: 'Learn Jest', completed: false }
+    { id: 2, title: 'Learn Jest', completed: false },
 ];
 
 // Home route
 app.get('/', (req, res) => {
     res.json({
-        message: 'Welcome to Task Manager API'
+        message: 'Welcome to Task Manager API',
     });
 });
 
 // Health endpoint
 app.get('/health', (req, res) => {
     res.status(200).json({
-        status: 'UP'
+        status: 'UP',
     });
 });
 
@@ -32,11 +31,11 @@ app.get('/tasks', (req, res) => {
 
 // Get task by ID
 app.get('/tasks/:id', (req, res) => {
-    const task = tasks.find(t => t.id === Number(req.params.id));
+    const task = tasks.find((t) => t.id === Number(req.params.id));
 
     if (!task) {
         return res.status(404).json({
-            error: 'Task not found'
+            error: 'Task not found',
         });
     }
 
@@ -49,14 +48,14 @@ app.post('/tasks', (req, res) => {
 
     if (!title || typeof title !== 'string' || !title.trim()) {
         return res.status(400).json({
-            error: 'Task title is required'
+            error: 'Task title is required',
         });
     }
 
     const newTask = {
-        id: tasks.length ? Math.max(...tasks.map(t => t.id)) + 1 : 1,
+        id: tasks.length ? Math.max(...tasks.map((t) => t.id)) + 1 : 1,
         title: title.trim(),
-        completed: false
+        completed: false,
     };
 
     tasks.push(newTask);
@@ -68,7 +67,7 @@ app.post('/tasks', (req, res) => {
 function resetTasks() {
     tasks = [
         { id: 1, title: 'Learn Node.js', completed: false },
-        { id: 2, title: 'Learn Jest', completed: false }
+        { id: 2, title: 'Learn Jest', completed: false },
     ];
 }
 

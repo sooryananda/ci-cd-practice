@@ -1,4 +1,3 @@
-
 const request = require('supertest');
 const { app, resetTasks } = require('../app');
 
@@ -7,7 +6,6 @@ beforeEach(() => {
 });
 
 describe('Task Manager API Tests', () => {
-
     // Test 1: Home route
     test('GET / should return welcome message', async () => {
         const response = await request(app).get('/');
@@ -61,12 +59,9 @@ describe('Task Manager API Tests', () => {
 
     // Test 7: Reject empty task
     test('POST /tasks should reject an empty title', async () => {
-        const response = await request(app)
-            .post('/tasks')
-            .send({ title: '' });
+        const response = await request(app).post('/tasks').send({ title: '' });
 
         expect(response.statusCode).toBe(400);
         expect(response.body.error).toBe('Task title is required');
     });
-
 });
