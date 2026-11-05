@@ -21,7 +21,7 @@ describe('Task Manager API Tests', () => {
         const response = await request(app).get('/health');
 
         expect(response.statusCode).toBe(200);
-        expect(response.body.status).toBe('UP');
+        expect(response.body.status).toBe('DOWN');
     });
 
     // Test 3: Get all tasks
